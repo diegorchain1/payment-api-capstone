@@ -29,7 +29,18 @@ deny contains msg if {
 #       stmt.status == "not_affected"
 #       just := object.get(stmt, "justification", "")
 #       just == "" (ou startswith(just, "TODO"))
-# deny contains msg if {
-# 	...
-# 	msg := sprintf("VIOLACAO OPENVEX: Statement para '%v' marcado como 'not_affected' sem justificativa oficial valida.", [object.get(object.get(stmt, "vulnerability", {}), "name", "desconhecida")])
-# }
+deny contains msg if {
+	some stmt in object.get(input, "statements", [])
+	stmt.status == "not_affected"
+	just := object.get(stmt, "justification", "")
+	just == "" 
+		msg := sprintf("VIOLACAO OPENVEX: Statement para '%v' marcado como 'not_affected' sem justificativa oficial valida.", [object.get(object.get(stmt, "vulnerability", {}), "name", "desconhecida")])
+}
+
+deny contains msg if {
+	some stmt in object.get(input, "statements", [])
+	stmt.status == "not_affected"
+	just := object.get(stmt, "justification", "")
+	startswith(just, "TODO")
+	msg := sprintf("VIOLACAO OPENVEX: Statement para '%v' marcado como 'not_affected' sem justificativa oficial valida.", [object.get(object.get(stmt, "vulnerability", {}), "name", "desconhecida")])
+}
