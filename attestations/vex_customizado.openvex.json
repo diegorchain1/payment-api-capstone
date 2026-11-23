@@ -46,7 +46,7 @@
       ],
       "status": "not_affected",
       "justification": "vulnerable_code_not_in_execute_path",
-      "impact_statement": "A payment-api nao utiliza a funcao res.redirect() em seus endpoints ou fluxos de processamento. Portanto, o codigo vulneravel associado ao redirecionamento de URLs nao confiaveis nao faz parte do caminho de execucao do microsservico, nao permitindo a exploracao desta vulnerabilidade na aplicacao. "
+      "impact_statement": "A payment-api nao utiliza a funcao res.redirect() em seus endpoints ou fluxos de processamento. Portanto, o codigo vulneravel associado ao redirecionamento de URLs nao confiaveis nao faz parte do caminho de execucao do microsservico, nao permitindo a exploracao desta vulnerabilidade na aplicacao."
     }
   ]
 }
